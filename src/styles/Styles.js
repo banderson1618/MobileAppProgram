@@ -7,6 +7,10 @@ export default styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: 'green',
     },
+    itemContainer: {
+      height: 50,
+      width: 100
+    },
     welcome: {
       fontSize: 20,
       textAlign: 'center',
