@@ -11,8 +11,12 @@ import {
   Text,
   View
 } from 'react-native';
+import {
+  StackNavigator
+} from 'react-navigation';
 
 import styles from '../styles/Styles'
+
 
 export default class App extends Component {
   render() {
