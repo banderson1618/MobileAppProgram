@@ -15,7 +15,8 @@ import {
 
 import styles from '../styles/Styles'
 
-import route_model from '../models/route_model'
+import route_model from '../models/route_model';
+import CustomButton from './CustomButton';
 
 export default class SessionScreen extends Component {
     constructor(props){
@@ -30,10 +31,18 @@ export default class SessionScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                {this._renderRouteList()}
-                
+                <CustomButton 
+                    pressedButton = {() => this.addRoute()}
+                    text = "Add a route"
+                    />
+                {this._renderRouteList()}                
             </View>
         );
+    }
+
+    addRoute(){
+        console.log("Navigating...")
+        this.props.navigation.navigate("RouteAddScreen");
     }
 
     _renderRouteList(){
