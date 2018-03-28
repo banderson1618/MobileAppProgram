@@ -15,6 +15,7 @@ import {
 
 import styles from '../styles/Styles'
 
+import route_model from '../models/route_model'
 
 export default class SessionScreen extends Component {
     constructor(props){
@@ -29,20 +30,36 @@ export default class SessionScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
+                {this._renderRouteList()}
+                
+            </View>
+        );
+    }
+
+    _renderRouteList(){
+        if(this.state.routes.length === 0){
+            return (
+                <Text>
+                    No routes entered. Please enter a route.
+                </Text>
+            )
+        }
+        else {
+            return (
                 <Flatlist
-                    data = {this.routes}
+                    data = {this.state.routes}
                     renderItem = {this._renderItem}
                     style={{alignSelf: 'stretch'}}                    
                     keyExtractor={(item, index) => item.id}
                 />
-            </View>
-        );
+            )
+        }
     }
 
     _renderItem = ({item}) => {
         return (
           <View style={styles.itemContainer}>
-            <Text style={styles.textItem}>{item.id}</Text>
+            <Text style={styles.textItem}>{item.key}</Text>
             <Text style={styles.textItem}>{item.name}</Text>
           </View>
         );
