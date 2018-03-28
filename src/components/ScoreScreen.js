@@ -11,6 +11,8 @@ import styles from '../styles/Styles'
 
 export default class ScoreScreen extends Component{
   render(){
-    return()
+    return(
+      <Text>ScoreScreen</Text>
+    )
   }
 }
