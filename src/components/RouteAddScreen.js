@@ -41,7 +41,7 @@ export default class RouteAddScreen extends Component {
     }
     else{
       
-      this.props.navigation.navigate("SessionScreen", {routeName: this.state.name, routeRating: rat});
+      this.props.navigation.navigate("SessionScreen", {routeName: this.state.name, routeRating: this.state.rat});
 
     }
   }

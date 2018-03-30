@@ -1,8 +1,8 @@
-export class Route {
-    constructor(key, name, rating) {
+export class Route{
+    constructor(name, rating) {
         this.name = name;
         this.rating = rating;
-        this.key = key;
+        //this.key = key;
     }
 
 }

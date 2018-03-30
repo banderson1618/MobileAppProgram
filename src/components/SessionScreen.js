@@ -15,7 +15,7 @@ import {
 
 import styles from '../styles/Styles'
 
-import route_model from '../models/route_model';
+import {Route} from '../models/route_model';
 import CustomButton from './CustomButton';
 
 export default class SessionScreen extends Component {
@@ -28,25 +28,34 @@ export default class SessionScreen extends Component {
         }
     }
 
-    render() {
+    componentWillMount(){
+  
+      if(this.props.navigation.state.params != null){
+          console.log(this.props.navigation.state.params);
+          var newRoute = [];
+          newRoute.push(new Route(this.props.navigation.state.params.routeName, 5));
+          this.setState((prevState)=>{return {routes: prevState.routes.concat(newRoute)}});
+      }
+
+    }
+
+    addRoute(newRoute){
+        this.setState((prevState)=>{return {routes: prevState.routes.concat(newRoute)}});
+    }
+
+    _renderItem = ({item}) => {
+   
         return (
-            <View style={styles.container}>
-                <CustomButton 
-                    pressedButton = {() => this.addRoute()}
-                    text = "Add a route"
-                    />
-                {this._renderRouteList()}                
-            </View>
+          <View style={styles.itemContainer}>
+            <Text>{item.rating}</Text>
+            <Text>{item.name}</Text>
+          </View>
         );
     }
 
-    addRoute(){
-        console.log("Navigating...")
-        this.props.navigation.navigate("RouteAddScreen");
-    }
-
     _renderRouteList(){
-        if(this.state.routes.length === 0){
+
+        if(this.state.routes.length == 0){
             return (
                 <Text>
                     No routes entered. Please enter a route.
@@ -54,23 +63,32 @@ export default class SessionScreen extends Component {
             )
         }
         else {
+          
             return (
+              
                 <Flatlist
                     data = {this.state.routes}
                     renderItem = {this._renderItem}
                     style={{alignSelf: 'stretch'}}                    
-                    keyExtractor={(item, index) => item.id}
+                    keyExtractor={(item, index) => item.name}
                 />
             )
         }
     }
 
-    _renderItem = ({item}) => {
+    render() {
         return (
-          <View style={styles.itemContainer}>
-            <Text style={styles.textItem}>{item.key}</Text>
-            <Text style={styles.textItem}>{item.name}</Text>
-          </View>
+            <View style={styles.container}>
+                <CustomButton 
+                    pressedButton = {() => {this.props.navigation.navigate("RouteAddScreen")}}
+                    text = "Add a route"
+                />
+            </View>
         );
-      }
+    }
+
+    
+
+    
 }
+                //{this._renderRouteList()}                
