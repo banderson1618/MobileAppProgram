@@ -10,10 +10,10 @@ import {
   StackNavigator
 } from 'react-navigation';
 
-import styles from './styles/Styles';
+import styles from '../styles/Styles';
 
-import SessionScreen from './components/SessionScreen';
-import RouteAddScreen from './components/RouteAddScreen';
+import SessionScreen from '../components/SessionScreen';
+import RouteAddScreen from '../components/RouteAddScreen';
 
 const Root = StackNavigator(
   {
