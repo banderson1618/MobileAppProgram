@@ -22,8 +22,11 @@ export default class SessionScreen extends Component {
     constructor(props){
         super(props);
 
+        this.routes = [];
+
+        this.routes.push(new Route(1, "Gut puncher", 14))
+
         this.state = {
-            routes: [],
             sessionInProgress: false
         }
     }
@@ -55,7 +58,8 @@ export default class SessionScreen extends Component {
 
     _renderRouteList(){
 
-        if(this.state.routes.length == 0){
+
+        if(this.routes.length === 0){
             return (
                 <Text>
                     No routes entered. Please enter a route.
@@ -67,7 +71,7 @@ export default class SessionScreen extends Component {
             return (
               
                 <Flatlist
-                    data = {this.state.routes}
+                    data = {this.routes}
                     renderItem = {this._renderItem}
                     style={{alignSelf: 'stretch'}}                    
                     keyExtractor={(item, index) => item.name}
